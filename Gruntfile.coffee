@@ -15,3 +15,10 @@ module.exports = (grunt) ->
       spec:
         configFile: 'karma.conf.js'
         autoWatch: true
+
+    connect:
+      server:
+        options:
+          port: 9001,
+          base: ['build']
+          keepalive: true
