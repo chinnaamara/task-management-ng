@@ -2,6 +2,7 @@ module.exports = (grunt) ->
   (require 'load-grunt-tasks')(grunt)
 
   grunt.registerTask 'default', ['concurrent:default']
+  grunt.registerTask 'build', ['concurrent:lib']
 
   grunt.initConfig
     coffee:
@@ -9,7 +10,7 @@ module.exports = (grunt) ->
         options:
           join: true
         files:
-          'build/app.js': 'app/src/**/*.coffee'
+          'build/js/app.js': 'app/src/**/*.coffee'
 
     jade:
       compile:
@@ -18,6 +19,18 @@ module.exports = (grunt) ->
         src: ['**/*.jade']
         dest: 'build/html/'
         ext: '.html'
+
+    concat:
+      options:
+        separator: ';'
+      dist:
+        src: ['bower_components/angular/angular.min.js',
+              'bower_components/angular-ui-router/release/angular-ui-router.min.js',
+              'bower_components/jquery/dist/jquery.min.js',
+              'bower_components/lodash/dist/lodash.compat.min.js',
+              'bower_components/restangular/dist/restangular.min.js'
+        ]
+        dest: 'build/js/lib.min.js'
 
     karma:
       spec:
@@ -39,5 +52,6 @@ module.exports = (grunt) ->
 
     concurrent:
       default: ['jade','connect', 'watch']
+      lib: ['concat']
       options:
         logConcurrentOutput: true
