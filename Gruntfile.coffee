@@ -10,3 +10,8 @@ module.exports = (grunt) ->
           join: true
         files:
           'build/app.js': 'app/src/**/*.coffee'
+
+    karma:
+      spec:
+        configFile: 'karma.conf.js'
+        autoWatch: true
