@@ -11,6 +11,14 @@ module.exports = (grunt) ->
         files:
           'build/app.js': 'app/src/**/*.coffee'
 
+    jade:
+      compile:
+        expand: true
+        cwd: 'app/src/jade'
+        src: ['**/*.jade']
+        dest: 'build/html/'
+        ext: '.html'
+
     karma:
       spec:
         configFile: 'karma.conf.js'
@@ -20,8 +28,9 @@ module.exports = (grunt) ->
       server:
         options:
           port: 9001,
-          base: ['build']
+          base: ['build/html']
           keepalive: true
+          livereload: true
 
     watch:
       scripts:
@@ -29,6 +38,6 @@ module.exports = (grunt) ->
         tasks: ['coffee']
 
     concurrent:
-      default: ['connect', 'watch']
+      default: ['jade','connect', 'watch']
       options:
         logConcurrentOutput: true
