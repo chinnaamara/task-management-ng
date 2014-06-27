@@ -1,7 +1,7 @@
 module.exports = (grunt) ->
   (require 'load-grunt-tasks')(grunt)
 
-  grunt.registerTask 'default', ['coffee', 'concurrent:default']
+  grunt.registerTask 'default', ['concurrent:default']
 
   grunt.initConfig
     coffee:
@@ -23,5 +23,12 @@ module.exports = (grunt) ->
           base: ['build']
           keepalive: true
 
+    watch:
+      scripts:
+        files: ['app/src/**/*.coffee']
+        tasks: ['coffee']
+
     concurrent:
-      default: ['connect']
+      default: ['connect', 'watch']
+      options:
+        logConcurrentOutput: true
