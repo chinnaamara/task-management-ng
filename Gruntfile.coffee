@@ -24,11 +24,11 @@ module.exports = (grunt) ->
       options:
         separator: ';'
       dist:
-        src: ['bower_components/angular/angular.min.js',
-              'bower_components/angular-ui-router/release/angular-ui-router.min.js',
-              'bower_components/jquery/dist/jquery.min.js',
-              'bower_components/lodash/dist/lodash.compat.min.js',
-              'bower_components/restangular/dist/restangular.min.js'
+        src: ['bower_components/jquery/dist/jquery.js',
+              'bower_components/lodash/dist/lodash.compat.js',
+              'bower_components/angular/angular.js',
+              'bower_components/angular-ui-router/release/angular-ui-router.js',
+              'bower_components/restangular/dist/restangular.js'
         ]
         dest: 'build/js/lib.min.js'
     cssmin:
@@ -45,14 +45,17 @@ module.exports = (grunt) ->
       server:
         options:
           port: 9001,
-          base: ['build/html']
+          base: ['build/html','build/js','build/css','src/jade', 'src/coffee', 'src/css']
           keepalive: true
           livereload: true
 
     watch:
       scripts:
-        files: ['app/src/**/*.coffee']
-        tasks: ['coffee']
+        files: ['app/src/**/*.jade', 'app/src/**/*.coffee']
+        tasks: ['jade','coffee']
+      options:
+        spawn:true
+        livereload:true
 
     concurrent:
       default: ['jade','connect', 'watch', 'newer:cssmin']
