@@ -5,8 +5,24 @@ doctype html
 html(lang='en')
     head
         title taskmanagement
-        link(rel='stylesheet' href='../css/lib.min.css')
-        script(src='../js/lib.min.css')
-    body
-        div.container
-            h1 data
+        link(rel='stylesheet' href='lib.min.css')
+        script(src='lib.min.js')
+        script(src='app.js')
+    body(ng-app='taskmanagement')
+        nav.navbar.navbar-default.startbootstrap-nav(role='navigation')
+            .container
+                .navbar-header
+                    button.navbar-toggle(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
+                        span.sr-only Toggle navigation
+                        span.icon-bar
+                        span.icon-bar
+                        span.icon-bar
+                    a.navbar-brand(href='') Task Management
+                #bs-example-navbar-collapse-1.collapse.navbar-collapse
+                    ul.nav.navbar-nav.navbar-right
+                        li
+                          a(href='#')  Home
+                        li
+                          a(href='create_task.html')  Create Task
+
+            div(ui-view)
