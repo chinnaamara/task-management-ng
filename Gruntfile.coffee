@@ -20,6 +20,22 @@ module.exports = (grunt) ->
         dest: 'build/html/'
         ext: '.html'
 
+    cssmin:
+      combine:
+        files:
+          'build/css/lib.min.css' : [
+              'bower_components/bootstrap/dist/css/bootstrap.min.css',
+              'bower_components/bootstrap/dist/css/bootstrap-theme.min.css'
+          ],
+          'build/css/all.min.css' : 'app/src/**/*.css'
+
+    copy:
+      main:
+        src: ['bower_components/bootstrap/dist/fonts/*', '!**/dest/**']
+        expand: true
+        dest: 'build/'
+
+
     concat:
       options:
         separator: ';'
@@ -28,7 +44,8 @@ module.exports = (grunt) ->
               'bower_components/angular-ui-router/release/angular-ui-router.min.js',
               'bower_components/jquery/dist/jquery.min.js',
               'bower_components/lodash/dist/lodash.compat.min.js',
-              'bower_components/restangular/dist/restangular.min.js'
+              'bower_components/restangular/dist/restangular.min.js',
+              'bower_components/bootstrap/dist/js/bootstrap.min.js'
         ]
         dest: 'build/js/lib.min.js'
 
@@ -41,7 +58,7 @@ module.exports = (grunt) ->
       server:
         options:
           port: 9001,
-          base: ['build/html']
+          base: ['build/html', 'build/js', 'build/css']
           keepalive: true
           livereload: true
 
@@ -51,7 +68,7 @@ module.exports = (grunt) ->
         tasks: ['coffee']
 
     concurrent:
-      default: ['jade','connect', 'watch']
-      lib: ['concat']
+      default: ['jade', 'coffee', 'connect', 'watch']
+      lib: ['concat', 'cssmin', 'copy', 'jade', 'coffee', 'connect', 'watch']
       options:
         logConcurrentOutput: true
