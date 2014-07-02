@@ -31,21 +31,21 @@ module.exports = (grunt) ->
 
     copy:
       main:
-        src: ['bower_components/bootstrap/dist/fonts/*', '!**/dest/**']
+        src: ['bower_components/bootstrap/dist/fonts/*']
         expand: true
-        dest: 'build/'
+        dest: 'build/fonts/'
 
 
     concat:
       options:
         separator: ';'
       dist:
-        src: ['bower_components/angular/angular.min.js',
-              'bower_components/angular-ui-router/release/angular-ui-router.min.js',
-              'bower_components/jquery/dist/jquery.min.js',
-              'bower_components/lodash/dist/lodash.compat.min.js',
-              'bower_components/restangular/dist/restangular.min.js',
-              'bower_components/bootstrap/dist/js/bootstrap.min.js'
+        src: ['bower_components/jquery/dist/jquery.js',
+              'bower_components/bootstrap/dist/js/bootstrap.js',
+              'bower_components/lodash/dist/lodash.compat.js'
+              'bower_components/angular/angular.js',
+              'bower_components/angular-ui-router/release/angular-ui-router.js',
+              'bower_components/restangular/dist/restangular.js'
         ]
         dest: 'build/js/lib.min.js'
 
@@ -57,18 +57,30 @@ module.exports = (grunt) ->
     connect:
       server:
         options:
-          port: 9001,
-          base: ['build/html', 'build/js', 'build/css']
+          port: 9000
+          base: ['build/html', 'build/js', 'build/css', 'vendor']
           keepalive: true
           livereload: true
 
     watch:
-      scripts:
-        files: ['app/src/**/*.coffee']
+      jade:
+        files: ['app/src/jade/**/*.jade']
+        tasks: ['jade']
+
+      coffee:
+        files: ['app/src/coffee/**/*.coffee']
         tasks: ['coffee']
 
+      css:
+        files: ['app/src/css/**/*.css']
+        tasks: ['cssmin']
+
+      options:
+        spawn: true
+        livereload: true
+
     concurrent:
-      default: ['jade', 'coffee', 'connect', 'watch']
+      default: ['jade', 'coffee', 'copy', 'connect', 'watch']
       lib: ['concat', 'cssmin', 'copy', 'jade', 'coffee', 'connect', 'watch']
       options:
         logConcurrentOutput: true
