@@ -48,7 +48,11 @@ module.exports = (grunt) ->
               'bower_components/restangular/dist/restangular.js'
         ]
         dest: 'build/js/lib.min.js'
-
+    cssmin:
+      combine:
+        files:
+          'build/css/lib.min.css': ['bower_components/**/**/css/*.css'],
+          'build/css/all.min.css':['app/src/**/*.css']
     karma:
       spec:
         configFile: 'karma.conf.js'
@@ -71,6 +75,7 @@ module.exports = (grunt) ->
         files: ['app/src/coffee/**/*.coffee']
         tasks: ['coffee']
 
+
       css:
         files: ['app/src/css/**/*.css']
         tasks: ['cssmin']
@@ -82,5 +87,6 @@ module.exports = (grunt) ->
     concurrent:
       default: ['jade', 'coffee', 'copy', 'connect', 'watch']
       lib: ['concat', 'cssmin', 'copy', 'jade', 'coffee', 'connect', 'watch']
+
       options:
         logConcurrentOutput: true

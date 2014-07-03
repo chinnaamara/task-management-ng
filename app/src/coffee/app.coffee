@@ -18,3 +18,4 @@ app.config(($stateProvider) ->
     })
   return
 )
+
