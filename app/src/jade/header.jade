@@ -4,4 +4,31 @@
 div(id='nav-bar')
     nav(class='navbar navbar-inverse navbar-default', role='navigation')
         .navbar-header
-            a(class='navbar-brand', href='#') Task Management
+            a(class='navbar-brand') Task Management
+        div(class='collapse navbar-collapse', id='bs-example-navbar-collapse-1')
+            ul(class='nav navbar-nav')
+                li(class='dropdown')
+                    a(class='dropdown-toggle' data-toggle='dropdown')
+                        | Tasks
+                        b(class='caret')
+                    ul(class='dropdown-menu')
+                        li
+                            a(id='cteateTask') Create Task
+                        li(class='divider')
+                        li
+                            a Delete Task
+
+            ul(class='nav navbar-nav navbar-right')
+                li
+                    a(href='#/tasks') Dashboard
+                li(class='dropdown')
+                    a(class='dropdown-toggle' data-toggle='dropdown')
+                        | Admin
+                        b(class='caret')
+                    ul(class='dropdown-menu')
+                        li
+                            a Settings
+                        li(class='divider')
+                        li
+                            a(href='#') Logout
+
