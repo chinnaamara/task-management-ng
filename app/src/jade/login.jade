@@ -7,13 +7,38 @@ div(id='loginModal', class='modal show', tabindex='-1', role='dialog', aria-hidd
             .modal-header
                 h1(class='text-center') Login
             .modal-body
-                form(class='form col-md-12 center-block', ng-submit='login()')
-                    .form-group
-                        input(type='text', id='userName', class='form-control input-lg', ng-model='userId', placeholder='Email or Username', autofocus)
-                    .form-group
-                        input(type='password', id='password', class='form-control input-lg', ng-model='password', placeholder='password')
-                    .form-group
-                        input(type='submit', class='btn btn-primary btn-lg btn-block', id='btnLogin', value='LogIn')
 
+                form.white-row(ng-submit="login()")
+
+                    .row
+                        .form-group(ng-class="{'has-error':(error),'has-success':(passwordError)}")
+                            .col-md-12
+                                label Username or email
+                                input#username.form-control(ng-model='user.username', name='username', type='text', value='', placeholder='Username or email', autofocus, required)
+                    | &nbsp;
+                    .row
+                        .form-group(ng-class="{'has-error':(passwordError),'has-error':(error)}")
+                            .col-md-12
+                                label Password
+                                input#password.form-control(ng-model='user.password', name='password', type='password', value='', placeholder='Password', required)
+                    | &nbsp;
+                    .row
+                        .form-group
+                            .col-md-6
+                                input.btn.btn-primary.pull-left(type='submit', value='Sign In', data-loading-text='Loading...')
+                    | &nbsp;
+                    .row
+                        .alert.alert-danger(ng-show="error")
+                            i.fa.fa-frown-o
+                            | Invalid&nbsp;
+                            strong Username/email
+                            | &nbsp;or&nbsp;
+                            strong Password
+                            //| &nbsp;
+                        //.alert.alert-danger(ng-show="passwordError")
+                        //    i.fa.fa-frown-o
+                        //    | Invalid&nbsp;
+                        //    strong Password
+                        //    | &nbsp;
             .modal-footer(id='footer')
 
