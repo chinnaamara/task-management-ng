@@ -13,7 +13,21 @@ app.config(($stateProvider) ->
       url: '/tasks'
       views: {
         'viewA': {templateUrl: 'header.html'}
-        'viewB': {controller: '', templateUrl: 'home.html'}
+        'viewB': {controller: 'TasksController', templateUrl: 'home.html'}
+      }
+    })
+    .state('newTask', {
+        url: '/tasks/new'
+        views: {
+          'viewA': {templateUrl: 'header.html'}
+          'viewB': {controller: 'CreateNewController', templateUrl: 'new_task.html'}
+        }
+      })
+    .state('editTask', {
+      url: '/tasks/:id/edit'
+      views: {
+        'viewA': {templateUrl: 'header.html'}
+        'viewB': {controller: 'EditTaskController', templateUrl: 'edit_task.html'}
       }
     })
   return

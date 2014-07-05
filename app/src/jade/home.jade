@@ -1,2 +1,17 @@
-h3 Tasks List
+h3(class="text-center") Tasks List
+    .container
+        .row
+            div(class="col-xs-4 pull-right")
+                input(type="search", class="form-control", ng-model="searchTerm", placeholder="search")
+        br
+        table(class="table table-bordered")
+            tr(ng-repeat='task in tasks')
+                td: a(class="btn btn-success" href='#') Edit
+                td: button(class="btn btn-danger") Delete
+                td(class="text-left") {{ task.summary }}
 
+        ul(class="pager pull-right")
+            li(ng-class="{ disabled: pageSelected == 0 }")
+                a(ng-click="changePage(filteredProducts, -1)")  Previous
+            li(ng-class="{ disabled: (pageSelected + 1) == maxPage(filteredProducts) }")
+                a(ng-click="changePage(filteredProducts, 1)") Next
