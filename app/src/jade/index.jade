@@ -1,12 +1,14 @@
 doctype
 html(ng-app='TaskManager')
     head
+        title Task Management System
         link(href="lib.min.css", rel="stylesheet")
         link(href="all.min.css", rel="stylesheet")
-        script(src="lib.min.js")
-        script(src="app.js")
-        title Task Management System
+
     body(class='boxed')
         div(ui-view="viewA")
         div(ui-view="viewB")
+
+        script(src="lib.min.js")
+        script(src="app.js")
 

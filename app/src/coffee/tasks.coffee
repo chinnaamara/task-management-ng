@@ -1,6 +1,6 @@
 app.factory 'TasksFactory', (Restangular) ->
   retrieveTasks = ->
-    Restangular.all(serviceUrl + 'tasks').getList().then (result) ->
+    Restangular.all('tasks').getList().then (result) ->
       tasks = result
       return tasks
 
@@ -11,3 +11,6 @@ app.factory 'TasksFactory', (Restangular) ->
 app.controller 'TasksController', ($scope, TasksFactory, $window) ->
   TasksFactory.tasks().then (data) ->
     $scope.tasks = data
+
+  $scope.getTask = (taskId) ->
+    $window.location = '#/tasks/' + taskId + '/edit'

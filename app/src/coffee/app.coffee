@@ -1,33 +1,33 @@
-serviceUrl = '/localhost:3000/'
 app = angular.module('TaskManager', ['ui.router', 'restangular'])
-app.config(($stateProvider) ->
+app.config(($stateProvider, RestangularProvider) ->
+  RestangularProvider.setBaseUrl 'http://localhost:3000/'
   $stateProvider
     .state('login', {
       url: '',
       views: {
         'viewA': {templateUrl: 'login_header.html'}
-        'viewB': {controller: 'LoginController', templateUrl: 'login.html'}
+        'viewB': {templateUrl: 'login.html', controller: 'LoginController'}
       }
     })
-    .state('dashboard', {
+    .state('tasks', {
       url: '/tasks'
       views: {
         'viewA': {templateUrl: 'header.html'}
-        'viewB': {controller: 'TasksController', templateUrl: 'home.html'}
+        'viewB': {templateUrl: 'tasks.html', controller: 'TasksController'}
       }
     })
-    .state('newTask', {
-        url: '/tasks/new'
+    .state('tasks.new', {
+        url: '/new'
         views: {
           'viewA': {templateUrl: 'header.html'}
-          'viewB': {controller: 'CreateNewController', templateUrl: 'new_task.html'}
+          'viewB': {templateUrl: 'new_task.html', controller: 'CreateNewController'}
         }
       })
     .state('editTask', {
-      url: '/tasks/:id/edit'
+      url: '^/tasks/:id/edit'
       views: {
         'viewA': {templateUrl: 'header.html'}
-        'viewB': {controller: 'EditTaskController', templateUrl: 'edit_task.html'}
+        'viewB': {templateUrl: 'edit_task.html', controller: 'EditTaskController'}
       }
     })
   return
