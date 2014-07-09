@@ -5,28 +5,28 @@ app.config(($stateProvider, RestangularProvider) ->
     .state('login', {
       url: '',
       views: {
-        'viewA@': {templateUrl: 'login_header.html'}
+        'viewA@': {templateUrl: 'login_nav.html'}
         'viewB@': {templateUrl: 'login.html', controller: 'LoginController'}
       }
     })
     .state('tasks', {
-      url: '/tasks'
+      url: '/dashboard'
       views: {
-        'viewA@': {templateUrl: 'header.html'}
-        'viewB@': {templateUrl: 'tasks.html', controller: 'TasksController'}
+        'viewA@': {templateUrl: 'nav.html'}
+        'viewB@': {templateUrl: 'dashboard.html', controller: 'DashboardController'}
       }
     })
     .state('tasks.new', {
         url: '/new'
         views: {
-          'viewA@': {templateUrl: 'header.html'}
+          'viewA@': {templateUrl: 'nav.html'}
           'viewB@': {templateUrl: 'new_task.html', controller: 'NewTaskController'}
         }
       })
     .state('tasks.edit', {
       url: '/edit/{id}'
       views: {
-        'viewA@': {templateUrl: 'header.html'}
+        'viewA@': {templateUrl: 'nav.html'}
         'viewB@': {templateUrl: 'edit_task.html', controller: 'EditTaskController'}
       }
     })

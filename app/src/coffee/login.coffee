@@ -17,7 +17,7 @@ app.controller 'LoginController', ($scope, $window, Restangular, LoginFactory) -
   $scope.login = ->
     if $scope.user.username == $scope.data.userId
       if $scope.user.password == $scope.data.password
-        $window.location = '#/tasks'
+        $window.location = '#/dashboard'
       else
         showErrorMessage()
     else
