@@ -7,7 +7,7 @@ h3(class="text-center") Tasks List
         table(class="table table-bordered")
             tr(ng-repeat='task in tasks')
                 td
-                    a.btn.btn-info(ng-click="getTask(task.id)", style="margin-left: 5px") Edit
+                    a.btn.btn-info(ui-sref=".edit({id: task.id})", style="margin-left: 5px") Edit
                         //i.fa.fa-edit
                         //| Edit
                 td: button(class="btn btn-danger") Delete

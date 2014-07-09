@@ -5,29 +5,29 @@ app.config(($stateProvider, RestangularProvider) ->
     .state('login', {
       url: '',
       views: {
-        'viewA': {templateUrl: 'login_header.html'}
-        'viewB': {templateUrl: 'login.html', controller: 'LoginController'}
+        'viewA@': {templateUrl: 'login_header.html'}
+        'viewB@': {templateUrl: 'login.html', controller: 'LoginController'}
       }
     })
     .state('tasks', {
       url: '/tasks'
       views: {
-        'viewA': {templateUrl: 'header.html'}
-        'viewB': {templateUrl: 'tasks.html', controller: 'TasksController'}
+        'viewA@': {templateUrl: 'header.html'}
+        'viewB@': {templateUrl: 'tasks.html', controller: 'TasksController'}
       }
     })
     .state('tasks.new', {
         url: '/new'
         views: {
-          'viewA': {templateUrl: 'header.html'}
-          'viewB': {templateUrl: 'new_task.html', controller: 'CreateNewController'}
+          'viewA@': {templateUrl: 'header.html'}
+          'viewB@': {templateUrl: 'new_task.html', controller: 'NewTaskController'}
         }
       })
-    .state('editTask', {
-      url: '^/tasks/:id/edit'
+    .state('tasks.edit', {
+      url: '/edit/{id}'
       views: {
-        'viewA': {templateUrl: 'header.html'}
-        'viewB': {templateUrl: 'edit_task.html', controller: 'EditTaskController'}
+        'viewA@': {templateUrl: 'header.html'}
+        'viewB@': {templateUrl: 'edit_task.html', controller: 'EditTaskController'}
       }
     })
   return

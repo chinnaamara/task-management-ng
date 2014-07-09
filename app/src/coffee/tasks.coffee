@@ -11,6 +11,3 @@ app.factory 'TasksFactory', (Restangular) ->
 app.controller 'TasksController', ($scope, TasksFactory, $window) ->
   TasksFactory.tasks().then (data) ->
     $scope.tasks = data
-
-  $scope.getTask = (taskId) ->
-    $window.location = '#/tasks/' + taskId + '/edit'
