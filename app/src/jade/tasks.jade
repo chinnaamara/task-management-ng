@@ -1,20 +1,46 @@
-h3(class="text-center") Tasks List
-    .container
+.panel.panel-default.pull-left
+    .panel-heading Projects
+    .panel-body
         .row
-            div(class="col-xs-4 pull-right")
-                input(type="search", class="form-control", ng-model="searchTerm", placeholder="search")
+            div(class="col-xs-12 pull-right")
+                input(type="search", class="form-control", ng-model="projectKey", placeholder="search project")
         br
         table(class="table table-bordered")
-            tr(ng-repeat='task in tasks')
+            tr(ng-repeat='task in tasks | filter: projectKey')
+                //td
+                //    a.btn.btn-info(ui-sref=".edit({id: task.id})", style="margin-left: 5px") Edit
+                //        //i.fa.fa-edit
+                //        //| Edit
+                //td: button(class="btn btn-danger") Delete
                 td
-                    a.btn.btn-info(ui-sref=".edit({id: task.id})", style="margin-left: 5px") Edit
-                        //i.fa.fa-edit
-                        //| Edit
-                td: button(class="btn btn-danger") Delete
-                td(class="text-left") {{ task.summary }}
+                    a(id='cteateTask', ui-sref='.new') {{ task.summary }}
 
         ul(class="pager pull-right")
             li(ng-class="{ disabled: pageSelected == 0 }")
                 a(ng-click="changePage(filteredProducts, -1)")  Previous
             li(ng-class="{ disabled: (pageSelected + 1) == maxPage(filteredProducts) }")
                 a(ng-click="changePage(filteredProducts, 1)") Next
+
+
+.panel.panel-default.pull-right
+    .panel-heading Assigned to Me
+    .panel-body
+        table(class="table table-bordered")
+            tr(ng-repeat='task in tasks | filter: searchTerm')
+                //td
+                //    a.btn.btn-info(ui-sref=".edit({id: task.id})", style="margin-left: 5px") Edit
+                //        //i.fa.fa-edit
+                //        //| Edit
+                //td: button(class="btn btn-danger") Delete
+                td
+                    a(id='cteateTask', ui-sref='.new') {{ task.summary }}
+
+        ul(class="pager pull-right")
+            li(ng-class="{ disabled: pageSelected == 0 }")
+                a(ng-click="changePage(filteredProducts, -1)")  Previous
+            li(ng-class="{ disabled: (pageSelected + 1) == maxPage(filteredProducts) }")
+                a(ng-click="changePage(filteredProducts, 1)") Next
+
+.panel.panel-info
+    .panel-heading  &nbsp; Activity Stream
+    .panel-body
