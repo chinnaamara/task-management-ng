@@ -22,8 +22,4 @@
         "karma-phantomjs-launcher": "^0.1.4",
         "load-grunt-tasks": "^0.6.0"
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> e143de0fc58f0c287949ccf44faa2793d9807259

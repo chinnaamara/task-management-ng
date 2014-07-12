@@ -31,16 +31,10 @@ module.exports = (grunt) ->
 
     copy:
       main:
-<<<<<<< HEAD
-        src: ['bower_components/bootstrap/dist/fonts/*']
-        expand: true
-        dest: 'build/fonts/'
-=======
         flatten: true
         src: ['bower_components/bootstrap/dist/fonts/*']
         expand: true
         dest: 'build/fonts/fonts/'
->>>>>>> e143de0fc58f0c287949ccf44faa2793d9807259
 
 
     concat:
@@ -67,11 +61,7 @@ module.exports = (grunt) ->
       server:
         options:
           port: 9000
-<<<<<<< HEAD
-          base: ['build/html', 'build/js', 'build/css', 'vendor']
-=======
           base: ['build/html', 'build/js', 'build/css', 'build/fonts']
->>>>>>> e143de0fc58f0c287949ccf44faa2793d9807259
           keepalive: true
           livereload: true
 
