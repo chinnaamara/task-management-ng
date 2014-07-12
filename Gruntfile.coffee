@@ -20,22 +20,35 @@ module.exports = (grunt) ->
         dest: 'build/html/'
         ext: '.html'
 
+    cssmin:
+      combine:
+        files:
+          'build/css/lib.min.css' : [
+            'bower_components/bootstrap/dist/css/bootstrap.min.css',
+            'bower_components/bootstrap/dist/css/bootstrap-theme.min.css'
+          ],
+          'build/css/all.min.css' : 'app/src/**/*.css'
+
+    copy:
+      main:
+        src: ['bower_components/bootstrap/dist/fonts/*']
+        expand: true
+        dest: 'build/fonts/'
+
+
     concat:
       options:
         separator: ';'
       dist:
         src: ['bower_components/jquery/dist/jquery.js',
-              'bower_components/lodash/dist/lodash.compat.js',
+              'bower_components/bootstrap/dist/js/bootstrap.js',
+              'bower_components/lodash/dist/lodash.compat.js'
               'bower_components/angular/angular.js',
               'bower_components/angular-ui-router/release/angular-ui-router.js',
               'bower_components/restangular/dist/restangular.js'
         ]
         dest: 'build/js/lib.min.js'
-    cssmin:
-      combine:
-        files:
-          'build/css/lib.min.css': ['bower_components/**/**/css/*.css'],
-          'build/css/all.min.css':['app/src/**/*.css']
+
     karma:
       spec:
         configFile: 'karma.conf.js'
@@ -44,21 +57,30 @@ module.exports = (grunt) ->
     connect:
       server:
         options:
-          port: 9001,
-          base: ['build/html','build/js','build/css','src/jade', 'src/coffee', 'src/css']
+          port: 9000
+          base: ['build/html', 'build/js', 'build/css', 'vendor']
           keepalive: true
           livereload: true
 
     watch:
-      scripts:
-        files: ['app/src/**/*.jade', 'app/src/**/*.coffee']
-        tasks: ['jade','coffee']
+      jade:
+        files: ['app/src/jade/**/*.jade']
+        tasks: ['jade']
+
+      coffee:
+        files: ['app/src/coffee/**/*.coffee']
+        tasks: ['coffee']
+
+      css:
+        files: ['app/src/css/**/*.css']
+        tasks: ['cssmin']
+
       options:
-        spawn:true
-        livereload:true
+        spawn: true
+        livereload: true
 
     concurrent:
-      default: ['jade','connect', 'watch', 'newer:cssmin']
-      lib: ['concat']
+      default: ['jade', 'coffee', 'copy', 'connect', 'watch']
+      lib: ['concat', 'cssmin', 'copy', 'jade', 'coffee', 'connect', 'watch']
       options:
         logConcurrentOutput: true
