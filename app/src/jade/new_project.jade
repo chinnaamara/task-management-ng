@@ -1,0 +1,57 @@
+//
+   Created by chinna on 9/7/14.
+
+section.container
+    .row
+        .col-lg-12
+            h2(class='text-center') Add New Project
+            br
+            .panel.panel-info
+                .panel-heading
+                    | Project Details
+                .panel-body
+                    form#projectForm(name='projectForm',class='form-horizonal',type='form',novalidate)
+                        .col-lg-6
+                            .form-group.has-warning
+                                label.control-label(for='project-title')
+                                    | Project Title
+                                    span(style='color:red') *
+                                div(ng-class="{ 'has-error' : projectForm.projectTitle.$invalid }")
+                                    input#projectTitle.form-control(type='text',name='projectTitle',ng-model='project.title',placeholder='Project Title',required,autofocus)
+                                    small(class="label label-danger",ng-show="projectForm.projectTitle.$invalid && projectForm.projectTitle.$dirty") Required Project Title
+                            .form-group.has-warning
+                                label.control-label(for='project-duration')
+                                    | Expected Due Date
+                                    span(style='color:red') *
+                                div(ng-class="{ 'has-error' : projectForm.duration.$invalid }")
+                                    input#duration.form-control(type='date',name='duration',ng-model='project.date',placeholder='Duration in months',required,min=0,max=100)
+                                    small(class="label label-danger",ng-show="projectForm.duration.$invalid && projectForm.duration.$dirty") Requried duration in months
+                            .form-group.has-warning
+                                label.control-label(for='project-url')
+                                    | URL
+                                input#url.form-control(type='text',ng-model='project.url',name='url',placeholder='Project Url')
+
+                        .col-lg-6
+                            .form-group.has-warning
+                                label.control-label(for='project-key')
+                                    | Project Key
+                                    span(style='color:red') *
+                                div(ng-class="{ 'has-error' : projectForm.projectKey.$invalid }")
+                                    input#projectKey.form-control(type='text',name='projectKey',ng-model='project.key',placeholder='Project Key',required)
+                                    small(class="label label-danger",ng-show="projectForm.projectKey.$invalid && projectForm.projectKey.$dirty") Required Project Key
+                            .form-group.has-warning
+                                label.control-label(for='project-lead')
+                                    | Project Lead
+                                    span(style='color:red') *
+                                div(ng-class="{ 'has-error' : projectForm.lead.$invalid }")
+                                    input#lead.form-control(type='text',name='lead',ng-model='project.lead',placeholder='Project Lead',required)
+                                    small(class="label label-danger",ng-show="projectForm.lead.$invalid && projectForm.lead.$dirty") Requried Lead of Project
+                            .form-group.has-warning
+                                label.control-label(for='project-description')
+                                    | Description
+                                textarea#description.form-control(type='text',ng-model='project.description',name='description',placeholder='Description')
+
+                        div
+                            button.btn.btn-info(type='button', ng-click='createProject()', style="margin-right: 10px")
+                                | Add
+                            input.btn.btn-warning(type='reset',value='Reset')

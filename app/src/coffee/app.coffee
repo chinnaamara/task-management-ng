@@ -1,4 +1,4 @@
-app = angular.module('TaskManager', ['ui.router', 'restangular'])
+app = angular.module('TaskManager', ['ui.router', 'restangular', 'ngTable'])
 app.config(($stateProvider, RestangularProvider) ->
   RestangularProvider.setBaseUrl 'http://localhost:3000/'
   $stateProvider
@@ -28,6 +28,13 @@ app.config(($stateProvider, RestangularProvider) ->
       views: {
         'viewA@': {templateUrl: 'nav.html'}
         'viewB@': {templateUrl: 'edit_task.html', controller: 'EditTaskController'}
+      }
+    })
+    .state('newProject', {
+      url: '/project/new'
+      views: {
+        'viewA@': {templateUrl: 'nav.html'}
+        'viewB@': {templateUrl: 'new_project.html', controller: 'NewProjectController'}
       }
     })
   return

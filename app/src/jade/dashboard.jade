@@ -1,46 +1,65 @@
-.panel.panel-default.pull-left
-    .panel-heading Projects
-    .panel-body
-        .row
-            div(class="col-xs-12 pull-right")
-                input(type="search", class="form-control", ng-model="projectKey", placeholder="search project")
-        br
-        table(class="table table-bordered")
-            tr(ng-repeat='project in projects | filter: projectKey')
-                //td
-                //    a.btn.btn-info(ui-sref=".edit({id: task.id})", style="margin-left: 5px") Edit
-                //        //i.fa.fa-edit
-                //        //| Edit
-                //td: button(class="btn btn-danger") Delete
-                td
-                    a(ui-sref='.new') {{ project.summary }}
+section.container
+    .row
+        .col-lg-12
+            .col-lg-3
+                .panel.panel-default.pull-left
+                    .panel-heading Projects
+                    .panel-body
+                        div
+                            input(type="search", class="form-control", ng-model="projectKey", placeholder="search project")
+                        br
+                        table(class="table table-bordered")
+                            tr(ng-repeat='project in projects | filter: projectKey')
+                                //td
+                                //    a.btn.btn-info(ui-sref=".edit({id: task.id})", style="margin-left: 5px") Edit
+                                //        //i.fa.fa-edit
+                                //        //| Edit
+                                //td: button(class="btn btn-danger") Delete
+                                td
+                                    a(ng-click='showSome(project)') {{ project.summary }}
+                        ul(class="pager pull-right")
+                            li(ng-class="{ disabled: pageSelected == 0 }")
+                                a(ng-click="changePage(filteredProducts, -1)")  Previous
+                            li(ng-class="{ disabled: (pageSelected + 1) == maxPage(filteredProducts) }")
+                                a(ng-click="changePage(filteredProducts, 1)") Next
 
-        ul(class="pager pull-right")
-            li(ng-class="{ disabled: pageSelected == 0 }")
-                a(ng-click="changePage(filteredProducts, -1)")  Previous
-            li(ng-class="{ disabled: (pageSelected + 1) == maxPage(filteredProducts) }")
-                a(ng-click="changePage(filteredProducts, 1)") Next
+            .col-lg-6
+                .panel.panel-info
+                    .panel-heading Activity Stream
+                    .panel-body
+                        .h4 {{ projectTitle }}
+                        table(class="table table-bordered")
+                            tr(ng-repeat='task in allTasks')
+                                //td
+                                //    a.btn.btn-info(ui-sref=".edit({id: task.id})", style="margin-left: 5px") Edit
+                                //        //i.fa.fa-edit
+                                //        //| Edit
+                                //td: button(class="btn btn-danger") Delete
+                                td
+                                    a(ui-sref='.new') {{ task.summary }}
 
+                        div
+                            a(class="", ng-click="showAll()", ng-show="error")  Show All Projects
+                            a(class="btn btn-default pull-right", ng-click="showMore()")  Show more tasks..
 
-.panel.panel-default.pull-right
-    .panel-heading Assigned to Me
-    .panel-body
-        table(class="table table-bordered")
-            tr(ng-repeat='project in projects')
-                //td
-                //    a.btn.btn-info(ui-sref=".edit({id: task.id})", style="margin-left: 5px") Edit
-                //        //i.fa.fa-edit
-                //        //| Edit
-                //td: button(class="btn btn-danger") Delete
-                td
-                    a(ui-sref='.new') {{ project.summary }}
+            .col-lg-3
+                .panel.panel-default.pull-right
+                    .panel-heading Assigned to Me
+                    .panel-body
+                        div(class="pull-left")
+                            table(class="table table-bordered")
+                                tr(ng-repeat='project in projects')
+                                    //td
+                                    //    a.btn.btn-info(ui-sref=".edit({id: task.id})", style="margin-left: 5px") Edit
+                                    //        //i.fa.fa-edit
+                                    //        //| Edit
+                                    //td: button(class="btn btn-danger") Delete
+                                    td
+                                        a(ui-sref='.new') {{ project.summary }}
 
-        ul(class="pager pull-right")
-            li(ng-class="{ disabled: pageSelected == 0 }")
-                a(ng-click="changePage(filteredProducts, -1)")  Previous
-            li(ng-class="{ disabled: (pageSelected + 1) == maxPage(filteredProducts) }")
-                a(ng-click="changePage(filteredProducts, 1)") Next
+                            ul(class="pager pull-right")
+                                li(ng-class="{ disabled: pageSelected == 0 }")
+                                    a(ng-click="changePage(filteredProducts, -1)")  Previous
+                                li(ng-class="{ disabled: (pageSelected + 1) == maxPage(filteredProducts) }")
+                                    a(ng-click="changePage(filteredProducts, 1)") Next
 
-.panel.panel-info
-    .panel-heading  &nbsp; Activity Stream
-    .panel-body
