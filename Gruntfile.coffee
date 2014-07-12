@@ -31,9 +31,16 @@ module.exports = (grunt) ->
 
     copy:
       main:
+<<<<<<< HEAD
         src: ['bower_components/bootstrap/dist/fonts/*']
         expand: true
         dest: 'build/fonts/'
+=======
+        flatten: true
+        src: ['bower_components/bootstrap/dist/fonts/*']
+        expand: true
+        dest: 'build/fonts/fonts/'
+>>>>>>> e143de0fc58f0c287949ccf44faa2793d9807259
 
 
     concat:
@@ -46,6 +53,8 @@ module.exports = (grunt) ->
               'bower_components/angular/angular.js',
               'bower_components/angular-ui-router/release/angular-ui-router.js',
               'bower_components/restangular/dist/restangular.js'
+              'bower_components/ng-table/ng-table.js'
+              'bower_components/Faker/Faker.js'
         ]
         dest: 'build/js/lib.min.js'
 
@@ -58,7 +67,11 @@ module.exports = (grunt) ->
       server:
         options:
           port: 9000
+<<<<<<< HEAD
           base: ['build/html', 'build/js', 'build/css', 'vendor']
+=======
+          base: ['build/html', 'build/js', 'build/css', 'build/fonts']
+>>>>>>> e143de0fc58f0c287949ccf44faa2793d9807259
           keepalive: true
           livereload: true
 

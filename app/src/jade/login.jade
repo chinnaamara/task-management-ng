@@ -1,5 +1,9 @@
 //
+<<<<<<< HEAD
    Created by chinna on 3/7/14.
+=======
+   Created by chinna on 30/6/14.
+>>>>>>> e143de0fc58f0c287949ccf44faa2793d9807259
 
 div(id='loginModal', class='modal show', tabindex='-1', role='dialog', aria-hidden='true')
     .modal-dialog
@@ -7,6 +11,7 @@ div(id='loginModal', class='modal show', tabindex='-1', role='dialog', aria-hidd
             .modal-header
                 h1(class='text-center') Login
             .modal-body
+<<<<<<< HEAD
                 form(class='form col-md-12 center-block')
                     .form-group
                         input(type='text', id='userName', class='form-control input-lg', placeholder='Email or Username', autofocus)
@@ -15,3 +20,40 @@ div(id='loginModal', class='modal show', tabindex='-1', role='dialog', aria-hidd
                     .form-group
                         input(type='submit', class='btn btn-primary btn-lg btn-block', id='btnLogin', value='LogIn')
             .modal-footer(id='footer')
+=======
+
+                form.white-row(ng-submit="login()")
+
+                    .row
+                        .form-group(ng-class="{'has-error':(error),'has-success':(passwordError)}")
+                            .col-md-12
+                                label Username or email
+                                input#username.form-control(ng-model='user.username', name='username', type='text', value='', placeholder='Username or email', autofocus, required)
+                    | &nbsp;
+                    .row
+                        .form-group(ng-class="{'has-error':(passwordError),'has-error':(error)}")
+                            .col-md-12
+                                label Password
+                                input#password.form-control(ng-model='user.password', name='password', type='password', value='', placeholder='Password', required)
+                    | &nbsp;
+                    .row
+                        .form-group
+                            .col-md-6
+                                input.btn.btn-primary.pull-left(type='submit', value='Sign In', data-loading-text='Loading...')
+                    | &nbsp;
+                    .row
+                        .alert.alert-danger(ng-show="error")
+                            i.fa.fa-frown-o
+                            | Invalid&nbsp;
+                            strong Username/email
+                            | &nbsp;or&nbsp;
+                            strong Password
+                            //| &nbsp;
+                        //.alert.alert-danger(ng-show="passwordError")
+                        //    i.fa.fa-frown-o
+                        //    | Invalid&nbsp;
+                        //    strong Password
+                        //    | &nbsp;
+            .modal-footer(id='footer')
+
+>>>>>>> e143de0fc58f0c287949ccf44faa2793d9807259
