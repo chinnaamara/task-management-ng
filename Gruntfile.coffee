@@ -26,8 +26,8 @@ module.exports = (grunt) ->
           'build/css/lib.min.css' : [
             'bower_components/bootstrap/dist/css/bootstrap.min.css',
             'bower_components/bootstrap/dist/css/bootstrap-theme.min.css'
-          ],
-          'build/css/all.min.css' : 'app/src/**/*.css'
+          ]
+          , 'build/css/all.min.css' : 'app/src/**/*.css'
 
     copy:
       main:
@@ -41,16 +41,16 @@ module.exports = (grunt) ->
       options:
         separator: ';'
       dist:
-        src: ['bower_components/jquery/dist/jquery.js',
-              'bower_components/bootstrap/dist/js/bootstrap.js',
-              'bower_components/lodash/dist/lodash.compat.js'
-              'bower_components/angular/angular.js',
-              'bower_components/angular-ui-router/release/angular-ui-router.js',
-              'bower_components/restangular/dist/restangular.js',
-              'bower_components/ng-table/ng-table.js',
-              'bower_components/Faker/Faker.js',
-              'bower_components/firebase/firebase.js',
-              'bower_components/angularfire/angularfire.js'
+        src: ['bower_components/jquery/dist/jquery.js'
+              , 'bower_components/firebase/firebase.js'
+              , 'bower_components/angular/angular.js'
+              , 'bower_components/bootstrap/dist/js/bootstrap.js'
+              , 'bower_components/lodash/dist/lodash.compat.js'
+              , 'bower_components/angular-ui-router/release/angular-ui-router.js'
+              , 'bower_components/restangular/dist/restangular.js'
+              , 'bower_components/ng-table/ng-table.js'
+              , 'bower_components/Faker/Faker.js'
+              , 'bower_components/angularfire/angularfire.js'
         ]
         dest: 'build/js/lib.min.js'
 
