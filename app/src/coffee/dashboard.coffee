@@ -40,9 +40,10 @@ app.factory 'DashboardFactory', ->
 app.controller 'DashboardController', ($scope, DashboardFactory, ngTableParams, $window) ->
   $scope.projects = DashboardFactory.projects
   console.log $scope.projects
-  $scope.tasksPerPage = 10
+  $scope.tasksPerPage = 8
   $scope.showMoreFlag = 0
   $scope.activeProject = {}
+  $scope.predicate = '-id'
 #  DashboardFactory.tasks().then (data) ->
 #    $scope.tasks = data
   $scope.viewTasks = (project) ->
@@ -66,16 +67,16 @@ app.controller 'DashboardController', ($scope, DashboardFactory, ngTableParams, 
   console.log $scope.allTasks
 
   $scope.showMore = ->
-    $scope.tasksPerPage += 5
+    $scope.tasksPerPage += 4
     if $scope.showMoreFlag == 0
       $scope.viewAllTasks($scope.tasksPerPage)
     else
       $scope.viewTasks($scope.activeProject, $scope.tasksPerPage)
 
   $scope.showAll = ->
-    $scope.tasksPerPage = 10
+    $scope.tasksPerPage = 8
     $scope.viewAllTasks()
 
   $scope.showSome = (project) ->
-    $scope.tasksPerPage = 10
+    $scope.tasksPerPage = 8
     $scope.viewTasks(project)

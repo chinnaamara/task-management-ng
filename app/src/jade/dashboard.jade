@@ -9,13 +9,13 @@ section.container
                             input(type="search", class="form-control", ng-model="projectKey", placeholder="search project")
                         br
                         table(class="table table-bordered")
-                            tr(ng-repeat='project in projects | filter: projectKey')
+                            tr(ng-repeat='project in projects | filter: projectKey | orderBy: predicate')
                                 //td
                                 //    a.btn.btn-info(ui-sref=".edit({id: task.id})", style="margin-left: 5px") Edit
                                 //        //i.fa.fa-edit
                                 //        //| Edit
                                 //td: button(class="btn btn-danger") Delete
-                                td
+                                td(ng-click='showSome(project)')
                                     a(ng-click='showSome(project)') {{ project.summary }}
                         ul(class="pager pull-right")
                             li(ng-class="{ disabled: pageSelected == 0 }")

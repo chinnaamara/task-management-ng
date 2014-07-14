@@ -18,7 +18,10 @@
     "bootstrap": "~3.2.0",
     "jquery": "~2.1.1",
     "restangular": "~1.4.0",
-    "angular-bootstrap": "~0.11.0"
-    "ng-table": "*"
+    "angular-bootstrap": "~0.11.0",
+    "lodash": "~2.4.1",
+    "ng-table": "~0.3.3",
+    "firebase": "~1.0.17",
+    "angularfire": "~0.7.1"
   }
 }

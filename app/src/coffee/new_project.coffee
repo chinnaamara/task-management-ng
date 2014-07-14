@@ -1,4 +1,4 @@
-app.controller 'NewProjectController', ($scope, DashboardFactory) ->
+app.controller 'NewProjectController', ($scope, DashboardFactory, $window) ->
   console.log 'new project'
   $scope.createProject = ->
 #    Projects.add $scope
@@ -13,8 +13,10 @@ app.controller 'NewProjectController', ($scope, DashboardFactory) ->
       tasks: []
     }
     DashboardFactory.add newProject
+    $window.location = '#/dashboard'
+
 #    DashboardFactory.add(newProject).then (result) ->
 #      console.log result
-    console.log 'addded'
-#    return
+#      return
+    return
   return

@@ -1,4 +1,54 @@
-//
-   Created by chinna on 4/7/14.
+//   Created by chinna on 4/7/14.
 
-h1(class='text-center') Create New Task
+section.container
+   .row
+       .col-lg-12
+           h2(class='text-center') Add New Task
+           br
+           .panel.panel-info
+               .panel-heading
+                   | Task Details
+               .panel-body
+                   form#taskForm(name='taskForm',class='form-horizonal',type='form',novalidate)
+                       .col-lg-6
+                           .form-group.has-warning
+                               label.control-label(for='task-summary')
+                                   | Task Summary
+                                   span(style='color:red') *
+                               div(ng-class="{ 'has-error' : taskForm.task-summary.$invalid }")
+                                   input#taskSummary.form-control(type='text',name='taskSummary',ng-model='task.summary',placeholder='Task Summary',required)
+                                   small(class="label label-danger",ng-show="taskForm.taskSummary.$invalid && taskForm.taskSummary.$dirty") Required Task Summary
+                           .form-group.has-warning
+                               label.control-label(for='task-duration')
+                                   | Due Date
+                                   span(style='color:red') *
+                               div(ng-class="{ 'has-error' : taskForm.dueDate.$invalid }")
+                                   input#dueDate.form-control(type='date',name='dueDate',ng-model='task.dueDate', required)
+                                   small(class="label label-danger",ng-show="taskForm.dueDate.$invalid && taskForm.dueDate.$dirty") Requried Due Date
+                           .form-group.has-warning
+                               label.control-label(for='task-priority')
+                                   | Priority
+                               input#url.form-control(type='text',ng-model='task.priority',name='priority',placeholder='Task Priority')
+                      .col-lg-6
+                           .form-group.has-warning
+                               label.control-label(for='project-key')
+                                   | Project Key
+                                   span(style='color:red') *
+                               div(ng-class="{ 'has-error' : taskForm.projectKey.$invalid }")
+                                   input#projectKey.form-control(type='text',name='projectKey',ng-model='project.key',placeholder='Project Key',required)
+                                   small(class="label label-danger",ng-show="taskForm.projectKey.$invalid && taskForm.projectKey.$dirty") Required Project Key
+                           .form-group.has-warning
+                               label.control-label(for='project-lead')
+                                   | Project Lead
+                                   span(style='color:red') *
+                               div(ng-class="{ 'has-error' : taskForm.lead.$invalid }")
+                                   input#lead.form-control(type='text',name='lead',ng-model='project.lead',placeholder='Project Lead',required)
+                                   small(class="label label-danger",ng-show="taskForm.lead.$invalid && taskForm.lead.$dirty") Requried Lead of Project
+                           .form-group.has-warning
+                               label.control-label(for='project-description')
+                                   | Description
+                               textarea#description.form-control(type='text',ng-model='project.description',name='description',placeholder='Description')
+                      div
+                           button.btn.btn-info(type='button', ng-click='createProject()', style="margin-right: 10px")
+                               | Add
+                           input.btn.btn-warning(type='reset',value='Reset')
