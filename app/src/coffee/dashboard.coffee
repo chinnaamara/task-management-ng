@@ -8,37 +8,53 @@
 #    tasks: retrieveTasks
 #  }
 
-app.factory 'DashboardFactory', ->
-  projects = _.map _.range(10), (id) ->
-    id: id + 1
-    summary: Faker.Lorem.words(4).join ' '
-    key: Faker.Lorem.words(1).join ''
-    dueDate: Faker.Date.future(0)
-    description: Faker.Lorem.sentences()
-    lead: Faker.Name.firstName()
-    url: Faker.Internet.domainName()
-    createdDate: new Date()
-    tasks: _.map _.range(15), (id) ->
-      id: id + 1
-      summary: Faker.Lorem.words(3).join ' '
-      dueDate: Faker.Date.future(0)
-      description: Faker.Lorem.sentences()
-      status: Faker.Lorem.words(1).join ''
-      createDate: new Date()
-      assighnedTo: Faker.Name.firstName()
-      priority: Faker.Lorem.words(1).join ''
+#app.factory 'DashboardFactory', ->
+#  projects = _.map _.range(10), (id) ->
+#    id: id + 1
+#    summary: Faker.Lorem.words(4).join ' '
+#    key: Faker.Lorem.words(1).join ''
+#    dueDate: Faker.Date.future(0)
+#    description: Faker.Lorem.sentences()
+#    lead: Faker.Name.firstName()
+#    url: Faker.Internet.domainName()
+#    createdDate: new Date()
+#    tasks: _.map _.range(15), (id) ->
+#      id: id + 1
+#      summary: Faker.Lorem.words(3).join ' '
+#      dueDate: Faker.Date.future(0)
+#      description: Faker.Lorem.sentences()
+#      status: Faker.Lorem.words(1).join ''
+#      createDate: new Date()
+#      assighnedTo: Faker.Name.firstName()
+#      priority: Faker.Lorem.words(1).join ''
+#
+#  newProject = (p) ->
+#    projects.push p
+#    return true
+#  return {
+#    projects: projects
+#    add: newProject
+#  }
 
-  newProject = (p) ->
-    projects.push p
-    return true
+app.factory 'DashboardFactory', ($firebase) ->
+  ref = new Firebase 'https://taskmanagement.firebaseio.com/projects'
+  data = $firebase ref
+  add = (newProject) ->
+    data.$add(newProject)
+  update = (project) ->
+    data.$update(project)
+  remove = (id) ->
+    data.$remove(id)
+
   return {
-    projects: projects
-    add: newProject
+    data : data
+    addProject : add
+    updateProject : update
+    removeProject : remove
   }
 
-
 app.controller 'DashboardController', ($scope, DashboardFactory, ngTableParams, $window) ->
-  $scope.projects = DashboardFactory.projects
+  $scope.projects = DashboardFactory.data
   console.log $scope.projects
   $scope.tasksPerPage = 8
   $scope.showMoreFlag = 0

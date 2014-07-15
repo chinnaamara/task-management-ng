@@ -12,7 +12,7 @@ app.controller 'NewProjectController', ($scope, DashboardFactory, $window) ->
       createdDate: new Date()
       tasks: []
     }
-    DashboardFactory.add newProject
+    DashboardFactory.addProject newProject
     $window.location = '#/dashboard'
 
 #    DashboardFactory.add(newProject).then (result) ->
