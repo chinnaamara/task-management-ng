@@ -14,11 +14,30 @@ module.exports = (grunt) ->
 
     jade:
       compile:
-        expand: true
-        cwd: 'app/src/jade'
-        src: ['**/*.jade']
-        dest: 'build/html/'
-        ext: '.html'
+        options:
+          client: false
+          pretty: true
+        files: [{
+          cwd: 'app/src/jade'
+          src: ['**/*.jade', '!index.jade']
+          dest: 'build/html/'
+          expand: true
+          ext: '.html'
+        },{
+           cwd: 'app/src/jade'
+           src: ['index.jade']
+           dest: 'build/'
+           expand: true
+           ext: '.html'
+        }]
+
+#    jadeIndex:
+#      compile:
+#        expand: true
+#        cwd: 'app/src/jade'
+#        src: ['index.jade']
+#        dest: 'build/'
+#        ext: '.html'
 
     cssmin:
       combine:
@@ -27,7 +46,7 @@ module.exports = (grunt) ->
             'bower_components/bootstrap/dist/css/bootstrap.min.css',
             'bower_components/bootstrap/dist/css/bootstrap-theme.min.css'
           ]
-          , 'build/css/all.min.css' : 'app/src/**/*.css'
+      , 'build/css/all.min.css' : 'app/src/**/*.css'
 
     copy:
       main:
@@ -42,15 +61,15 @@ module.exports = (grunt) ->
         separator: ';'
       dist:
         src: ['bower_components/jquery/dist/jquery.js'
-              , 'bower_components/firebase/firebase.js'
-              , 'bower_components/angular/angular.js'
-              , 'bower_components/bootstrap/dist/js/bootstrap.js'
-              , 'bower_components/lodash/dist/lodash.compat.js'
-              , 'bower_components/angular-ui-router/release/angular-ui-router.js'
-              , 'bower_components/restangular/dist/restangular.js'
-              , 'bower_components/ng-table/ng-table.js'
-              , 'bower_components/Faker/Faker.js'
-              , 'bower_components/angularfire/angularfire.js'
+        , 'bower_components/firebase/firebase.js'
+        , 'bower_components/angular/angular.js'
+        , 'bower_components/bootstrap/dist/js/bootstrap.js'
+        , 'bower_components/lodash/dist/lodash.compat.js'
+        , 'bower_components/angular-ui-router/release/angular-ui-router.js'
+        , 'bower_components/restangular/dist/restangular.js'
+        , 'bower_components/ng-table/ng-table.js'
+        , 'bower_components/Faker/Faker.js'
+        , 'bower_components/angularfire/angularfire.js'
         ]
         dest: 'build/js/lib.min.js'
 
@@ -63,7 +82,7 @@ module.exports = (grunt) ->
       server:
         options:
           port: 9000
-          base: ['build/html', 'build/js', 'build/css', 'build/fonts']
+          base: ['build/']
           keepalive: true
           livereload: true
 

@@ -1,67 +1,41 @@
-#app.factory 'DashboardFactory', (Restangular) ->
-#  retrieveTasks = ->
-#    Restangular.all('tasks').getList().then (result) ->
-#      tasks = result
-#      return tasks
-#
-#  return {
-#    tasks: retrieveTasks
-#  }
+app.factory 'DashboardFactory', ($firebase, BASEURI) ->
+  ref = new Firebase BASEURI + 'projects'
+  projects = $firebase ref
 
-#app.factory 'DashboardFactory', ->
-#  projects = _.map _.range(10), (id) ->
-#    id: id + 1
-#    summary: Faker.Lorem.words(4).join ' '
-#    key: Faker.Lorem.words(1).join ''
-#    dueDate: Faker.Date.future(0)
-#    description: Faker.Lorem.sentences()
-#    lead: Faker.Name.firstName()
-#    url: Faker.Internet.domainName()
-#    createdDate: new Date()
-#    tasks: _.map _.range(15), (id) ->
-#      id: id + 1
-#      summary: Faker.Lorem.words(3).join ' '
-#      dueDate: Faker.Date.future(0)
-#      description: Faker.Lorem.sentences()
-#      status: Faker.Lorem.words(1).join ''
-#      createDate: new Date()
-#      assighnedTo: Faker.Name.firstName()
-#      priority: Faker.Lorem.words(1).join ''
-#
-#  newProject = (p) ->
-#    projects.push p
-#    return true
-#  return {
-#    projects: projects
-#    add: newProject
-#  }
-
-app.factory 'DashboardFactory', ($firebase) ->
-  ref = new Firebase 'https://taskmanagement.firebaseio.com/projects'
-  data = $firebase ref
   add = (newProject) ->
-    data.$add(newProject)
+    addRef = new Firebase BASEURI + 'projects/' + newProject.id
+    addRef.child('title').set(newProject.title)
+    addRef.child('dueDate').set(newProject.dueDate)
+    addRef.child('url').set(newProject.url)
+    addRef.child('key').set(newProject.key)
+    addRef.child('lead').set(newProject.lead)
+    addRef.child('description').set(newProject.description)
+    addRef.child('createdDate').set(newProject.createdDate)
+    addRef.child('dueDate').set(newProject.dueDate)
+    return
+
   update = (project) ->
-    data.$update(project)
+    ref.$update(id)
+    return
+
   remove = (id) ->
-    data.$remove(id)
+    projects.$remove(id)
+    return
 
   return {
-    data : data
+    data : projects
     addProject : add
     updateProject : update
     removeProject : remove
   }
 
-app.controller 'DashboardController', ($scope, DashboardFactory, ngTableParams, $window) ->
+app.controller 'DashboardController', ($scope, DashboardFactory) ->
+#  data = _.toArray DashboardFactory.data
   $scope.projects = DashboardFactory.data
-  console.log $scope.projects
   $scope.tasksPerPage = 8
   $scope.showMoreFlag = 0
   $scope.activeProject = {}
-  $scope.predicate = '-id'
-#  DashboardFactory.tasks().then (data) ->
-#    $scope.tasks = data
+  $scope.predicate = '-createdDate'
   $scope.viewTasks = (project) ->
     $scope.showMoreFlag = 1
     $scope.activeProject = project
