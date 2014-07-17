@@ -15,7 +15,7 @@ app.controller 'NewProjectController', ($scope, DashboardFactory, $window) ->
       description: $scope.project.description
       lead: $scope.project.lead
       url: $scope.project.url
-      createdDate: new Date()
+      createdDate: new Date().toString()
     }
     DashboardFactory.addProject newProject
     $window.location = '#/dashboard'
