@@ -29,7 +29,7 @@ section.container
                     .panel-body
                         .h4 {{ projectTitle }}
                         table(class="table table-bordered")
-                            tr(ng-repeat='task in projects')
+                            tr(ng-repeat='task in projectTasks')
                                 //td
                                 //    a.btn.btn-info(ui-sref=".edit({id: task.id})", style="margin-left: 5px") Edit
                                 //        //i.fa.fa-edit

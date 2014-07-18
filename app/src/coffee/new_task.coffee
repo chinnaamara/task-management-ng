@@ -8,16 +8,24 @@ app.controller 'NewTaskController', ($scope, DashboardFactory) ->
     _.isObject p
 
   $scope.currentProject = {}
+  $scope.taskId
   $scope.changeProject = ->
     $scope.currentProject = _.find($scope.projects, (p) ->
       return $scope.projectName == p.title
     )
     console.log $scope.currentProject
 
+    tasks = DashboardFactory.getTasksById $scope.currentProject.id
+    keys = _.keys tasks
+    numberdKeys = _.filter(keys, (n) ->
+      isNaN(Number n) == false
+    )
+    $scope.taskId = Number(_.last numberdKeys) || 0
+
   $scope.addTask = ->
     newTask = {
       projectId: $scope.currentProject.id
-      taskId: 1
+      taskId: $scope.taskId + 1
       summary: $scope.task.summary
       status: 'Open'
       dueDate: $scope.task.dueDate

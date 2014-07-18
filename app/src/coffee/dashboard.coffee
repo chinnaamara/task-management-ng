@@ -1,6 +1,8 @@
 app.factory 'DashboardFactory', ($firebase, BASEURI) ->
   projectsRef = new Firebase BASEURI + 'projects'
   projects = $firebase projectsRef
+  tasksByIdRef = new Firebase BASEURI + 'projects/' + 1 + '/tasks/'
+  tasksById = $firebase tasksByIdRef
 
   add = (newProject) ->
     addRef = new Firebase BASEURI + 'projects/' + newProject.id
@@ -33,21 +35,29 @@ app.factory 'DashboardFactory', ($firebase, BASEURI) ->
     addRef.child('status').set(newTask.status)
     return
 
+  retrieveTasksById = (projectId) ->
+    tasksRef = new Firebase BASEURI + 'projects/' + projectId + '/tasks/'
+    tasks = $firebase tasksRef
+    return tasks
+
   return {
     data : projects
     addProject : add
     updateProject : update
     removeProject : remove
     addTask: addTask
+    getTasksById : retrieveTasksById
   }
 
 app.controller 'DashboardController', ($scope, DashboardFactory) ->
 #  data = _.toArray DashboardFactory.data
   $scope.projects = DashboardFactory.data
+  $scope.allTasks = {}
   $scope.tasksPerPage = 8
   $scope.showMoreFlag = 0
   $scope.activeProject = {}
   $scope.predicate = '-createdDate'
+
   $scope.viewTasks = (project) ->
     $scope.showMoreFlag = 1
     $scope.activeProject = project
@@ -60,10 +70,15 @@ app.controller 'DashboardController', ($scope, DashboardFactory) ->
     $scope.projectTitle = 'All Projects Tasks'
     $scope.error = false;
     data = []
-    _.forEach($scope.projects, (p) ->
-      data = data.concat p.tasks
+    keys = _.keys $scope.projects
+    numberdKeys = _.filter(keys, (n) ->
+      isNaN(Number n) == false
     )
-    $scope.allTasks = data.slice(0, $scope.tasksPerPage)
+    _.forEach(numberdKeys, (p) ->
+      data.push DashboardFactory.getTasksById(p)
+    )
+    console.log data
+#    $scope.allTasks = data.slice(0, $scope.tasksPerPage)
 
   $scope.viewAllTasks()
   console.log $scope.allTasks
@@ -80,5 +95,8 @@ app.controller 'DashboardController', ($scope, DashboardFactory) ->
     $scope.viewAllTasks()
 
   $scope.showSome = (project) ->
-    $scope.tasksPerPage = 8
-    $scope.viewTasks(project)
+    $scope.projectTitle = project.title
+    $scope.error = true
+    $scope.projectTasks = DashboardFactory.getTasksById project.id
+#    $scope.tasksPerPage = 8
+#    $scope.viewTasks(project)
