@@ -65,6 +65,9 @@ section.container
                                 textarea#description.form-control(type='text',ng-model='task.description',name='description',placeholder='Description')
                         div
                             button.btn.btn-info(type='button', ng-click='addTask()', style="margin-right: 10px")
-                                | Add
+                                | Create New
                             input.btn.btn-warning(type='reset',value='Reset')
-                
+            .col-lg-12
+                .alert.alert-success(ng-show="addTaskMessage")
+                    i.fa.fa-check-circle-o
+                    | Task created successfully...

@@ -16,16 +16,23 @@ app.controller 'NewTaskController', ($scope, DashboardFactory) ->
     console.log $scope.currentProject
 
     tasks = DashboardFactory.getTasksById $scope.currentProject.id
-    keys = _.keys tasks
-    numberdKeys = _.filter(keys, (n) ->
-      isNaN(Number n) == false
-    )
-    $scope.taskId = Number(_.last numberdKeys) || 0
+    keys = _.keys(tasks).reverse()
+#    numberdKeys = _.filter(keys, (n) ->
+#      isNaN(Number n) == false
+#    )
+#    lastTaskId = _.last numberdKeys
+    lastTaskId = keys[0]
+    console.log lastTaskId
+#    $scope.taskId = Number(_.last numberdKeys) || 0
+    if(lastTaskId && isNaN(Number(lastTaskId.split('t')[0])) == false)
+      $scope.taskId = Number(lastTaskId.split('t')[0]) + 't' + (Number(lastTaskId.split('t')[1]) + 1)
+    else
+      $scope.taskId = $scope.currentProject.id + 't' + 1
 
   $scope.addTask = ->
     newTask = {
       projectId: $scope.currentProject.id
-      taskId: $scope.taskId + 1
+      taskId: $scope.taskId
       summary: $scope.task.summary
       status: 'Open'
       dueDate: $scope.task.dueDate
@@ -34,4 +41,5 @@ app.controller 'NewTaskController', ($scope, DashboardFactory) ->
       createdDate: new Date().toString()
     }
     DashboardFactory.addTask newTask
+    $scope.addTaskMessage = true
     return
