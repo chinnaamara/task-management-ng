@@ -4,4 +4,14 @@
 div(id='nav-bar')
     nav(class='navbar navbar-inverse navbar-default', role='navigation')
         .navbar-header
-            a(class='navbar-brand', href='#') Task Management
+            img(src='images/techno_logo.png')
+        div(class='nav navbar-nav navbar-left')
+            a(class='navbar-brand', href='#')
+                | Task Management
+        ul(class='nav navbar-nav navbar-right')
+            li(class="my-nav-btn")
+                input.btn.btn-primary.pull-left(type='button', value='Sign Up', ui-sref='')
+            li(class="my-nav-btn")
+                input.btn.btn-primary.pull-left(type='button', value='Sign In' )
+            li
+                span aaa

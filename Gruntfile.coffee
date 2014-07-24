@@ -50,10 +50,28 @@ module.exports = (grunt) ->
 
     copy:
       main:
-        flatten: true
-        src: ['bower_components/bootstrap/dist/fonts/*']
-        expand: true
-        dest: 'build/fonts/fonts/'
+        files:
+          [
+            {
+              flatten: true
+              src: ['bower_components/bootstrap/dist/fonts/*']
+              expand: true
+              dest: 'build/fonts/fonts/'
+            },
+            {
+              flatten: true
+              src: ['app/src/images/*']
+              expand: true
+              dest: 'build/images/'
+            }
+          ]
+
+#    copy:
+#      main:
+#        flatten: true
+#        src: ['bower_components/bootstrap/dist/fonts/*']
+#        expand: true
+#        dest: 'build/fonts/fonts/'
 
 
     concat:

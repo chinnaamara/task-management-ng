@@ -1,6 +1,10 @@
 .modal-content{
     margin-top: 160px !important;
 }
+.my-nav-btn{
+    margin-top: 10px;
+    margin-left: 5px;
+}
 /*.modal-footer{*/
     /*border-top: 0px !important;*/
 /*}*/
