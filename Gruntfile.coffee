@@ -44,7 +44,8 @@ module.exports = (grunt) ->
         files:
           'build/css/lib.min.css' : [
             'bower_components/bootstrap/dist/css/bootstrap.min.css',
-            'bower_components/bootstrap/dist/css/bootstrap-theme.min.css'
+            'bower_components/bootstrap/dist/css/bootstrap-theme.min.css',
+            'bower_components/bootstrapValidator/dist/css/bootstrapValidator.min.css'
           ]
       , 'build/css/all.min.css' : 'app/src/**/*.css'
 
@@ -82,6 +83,7 @@ module.exports = (grunt) ->
         , 'bower_components/firebase/firebase.js'
         , 'bower_components/angular/angular.js'
         , 'bower_components/bootstrap/dist/js/bootstrap.js'
+        , 'bower_components/bootstrapValidator/dist/js/bootstrapValidator.js'
         , 'bower_components/lodash/dist/lodash.compat.js'
         , 'bower_components/angular-ui-router/release/angular-ui-router.js'
         , 'bower_components/restangular/dist/restangular.js'
