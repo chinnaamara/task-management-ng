@@ -1,5 +1,5 @@
 app.controller 'NewTaskController', ($scope, DashboardFactory) ->
-  data = _.toArray DashboardFactory.data
+  data = _.toArray DashboardFactory.retrieveProjects
 
   $scope.projects = _.filter data, (p) ->
     !_.isFunction p
@@ -15,7 +15,7 @@ app.controller 'NewTaskController', ($scope, DashboardFactory) ->
     )
     console.log $scope.currentProject
 
-    tasks = DashboardFactory.getTasksById $scope.currentProject.id
+    tasks = DashboardFactory.getTasksByProjectId $scope.currentProject.id
     keys = _.keys(tasks).reverse()
 #    numberdKeys = _.filter(keys, (n) ->
 #      isNaN(Number n) == false

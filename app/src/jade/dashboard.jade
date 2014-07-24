@@ -9,14 +9,14 @@ section.container
                             input(type="search", class="form-control", ng-model="projectKey", placeholder="search project")
                         br
                         table(class="table table-bordered")
-                            tr(ng-repeat='project in projects | filter: projectKey | orderBy : predicate')
+                            tr(ng-repeat='project in projects | orderByPriority | filter: projectKey | orderBy : predicate')
                                 //td
                                 //    a.btn.btn-info(ui-sref=".edit({id: task.id})", style="margin-left: 5px") Edit
                                 //        //i.fa.fa-edit
                                 //        //| Edit
                                 //td: button(class="btn btn-danger") Delete
                                 td
-                                    a(ng-click='showSome(project)') {{ project.title }}
+                                    a(ng-click='viewProjectTasks(project)') {{ project.title }}
                         ul(class="pager pull-right")
                             li(ng-class="{ disabled: pageSelected == 0 }")
                                 a(ng-click="changePage(filteredProducts, -1)")  Previous
@@ -27,9 +27,10 @@ section.container
                 .panel.panel-info
                     .panel-heading Activity Stream
                     .panel-body
+                        a(class="btn btn-default pull-right", ng-click="showAll()", ng-show="error")  All Projects Tasks
                         .h4 {{ projectTitle }}
                         table(class="table table-bordered")
-                            tr(ng-repeat='task in projectTasks')
+                            tr(ng-repeat='task in allTasks | orderByPriority | orderBy : predicate')
                                 //td
                                 //    a.btn.btn-info(ui-sref=".edit({id: task.id})", style="margin-left: 5px") Edit
                                 //        //i.fa.fa-edit
@@ -39,7 +40,6 @@ section.container
                                     a(ui-sref='.new') {{ task.summary }}
 
                         div
-                            a(class="", ng-click="showAll()", ng-show="error")  Show All Projects
                             a(class="btn btn-default pull-right", ng-click="showMore()")  Show more tasks..
 
             .col-lg-3

@@ -1,5 +1,5 @@
 app.controller 'NewProjectController', ($scope, DashboardFactory, $window) ->
-  projects = DashboardFactory.data
+  projects = DashboardFactory.retrieveProjects
   keys = _.keys projects
   numberdKeys = _.filter(keys, (n) ->
     isNaN(Number n) == false
