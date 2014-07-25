@@ -1,17 +1,16 @@
 //
    Created by chinna on 30/6/14.
 
-div(id='nav-bar')
+div(id='nav-bar', role='dialog')
     nav(class='navbar navbar-inverse navbar-default', role='navigation')
         .navbar-header
             img(src='images/techno_logo.png')
         div(class='nav navbar-nav navbar-left')
-            a(class='navbar-brand', href='#')
+            a(class='navbar-brand')
                 | Task Management
-        ul(class='nav navbar-nav navbar-right')
-            li(class="my-nav-btn")
-                input.btn.btn-primary.pull-left(type='button', value='Sign Up', ui-sref='')
-            li(class="my-nav-btn")
-                input.btn.btn-primary.pull-left(type='button', value='Sign In' )
-            li
-                span aaa
+        div(class='collapse navbar-collapse', id='bs-example-navbar-collapse-1')
+            ul(class='nav navbar-nav navbar-right')
+                li(class="my-nav-btn")
+                    input.btn.btn-primary.pull-left(type='button', value='Sign up', ui-sref='signUp')
+                li(class="my-nav-btn")
+                    input.btn.btn-primary.pull-left(type='button',value='Sign in', ui-sref='signIn')

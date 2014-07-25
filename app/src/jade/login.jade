@@ -1,11 +1,11 @@
 //
    Created by chinna on 30/6/14.
 
-div(id='loginModal', class='modal show', tabindex='-1', role='dialog', aria-hidden='true')
+div(id='loginModal', tabindex='-1', role='dialog', aria-hidden='true')
     .modal-dialog
         .modal-content
-            .modal-header
-                h1(class='text-center') Login
+            .modal-header.btn-default
+                h2(class='text-center') Sign In
             .modal-body
 
                 form.white-row(ng-submit="login()")
@@ -13,8 +13,8 @@ div(id='loginModal', class='modal show', tabindex='-1', role='dialog', aria-hidd
                     .row
                         .form-group(ng-class="{'has-error':(error),'has-success':(passwordError)}")
                             .col-md-12
-                                label Username or email
-                                input#username.form-control(ng-model='user.username', name='username', type='text', value='', placeholder='Username or email', autofocus, required)
+                                label Username or Email
+                                input#username.form-control(ng-model='user.username', name='username', type='text', value='', placeholder='Username or Email', autofocus, required)
                     | &nbsp;
                     .row
                         .form-group(ng-class="{'has-error':(passwordError),'has-error':(error)}")
@@ -31,7 +31,7 @@ div(id='loginModal', class='modal show', tabindex='-1', role='dialog', aria-hidd
                         .alert.alert-danger(ng-show="error")
                             i.fa.fa-frown-o
                             | Invalid&nbsp;
-                            strong Username/email
+                            strong Username/Email
                             | &nbsp;or&nbsp;
                             strong Password
                             //| &nbsp;

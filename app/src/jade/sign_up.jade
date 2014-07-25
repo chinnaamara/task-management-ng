@@ -1,0 +1,34 @@
+//
+   Created by chinna on 24/7/14.
+
+div(id='loginModal', tabindex='-1', role='dialog')
+    .modal-dialog
+        .modal-content
+            .modal-header.btn-default
+                h2(class="text-center") Sign up
+            .modal-body
+                form(id="signUpForm", name="signUpForm", class="form-horizonal", type="form", novalidate)
+                    .form-group.has-success
+                        label.control-label(for="username",style="color:black")
+                            | Username
+                            span(style="color:red") *
+                        div(ng-class="{ 'has-error' : signUpForm.username.$invalid }")
+                            input#username.form-control(type='text',name='username',ng-model='username',ng-minlength="3",placeholder='Username',required,autofocus)
+                            small(class="label label-danger",ng-show="signUpForm.username.$invalid && signUpForm.username.$dirty") Username should contain atleast 3 characters
+                    .form-group.has-success
+                        label.control-label(for="email",style="color:black")
+                            | Email Address
+                            span(style="color:red") *
+                        div(ng-class="{ 'has-error' : signUpForm.email.$invalid }")
+                            input#email.form-control(type='email',name='email',ng-model='email',placeholder='Email',required)
+                            small(class="label label-danger",ng-show="signUpForm.email.$invalid && signUpForm.email.$dirty") Required Email Address
+                    .form-group.has-success
+                        label.control-label(for="password",style="color:black")
+                            | Password
+                            span(style="color:red") *
+                        div(ng-class="{ 'has-error' : signUpForm.password.$invalid }")
+                            input#password.form-control(type='password',name='password',ng-model='password',ng-minlength="6",placeholder='Password',required)
+                            small(class="label label-danger",ng-show="signUpForm.password.$invalid && signUpForm.password.$dirty") Password should contain atleast 6 characters
+                    .form-group
+                        button.btn.btn-primary.form-control(style='margin-right: 10px', ng-click="createNew()", ng-disabled=" signUpForm.$invalid " )
+                            | Sign up for Task Management

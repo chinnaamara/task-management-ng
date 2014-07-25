@@ -3,8 +3,15 @@ app.constant('BASEURI', 'https://taskmanagement.firebaseio.com/')
 app.config(($stateProvider, RestangularProvider) ->
   RestangularProvider.setBaseUrl 'http://localhost:3000/'
   $stateProvider
-    .state('login', {
-      url: '',
+    .state('signUp', {
+      url: ''
+      views: {
+        'viewA@': {templateUrl: 'html/login_nav.html'}
+        'viewB@': {templateUrl: 'html/sign_up.html', controller: 'SignUpController'}
+      }
+    })
+    .state('signIn', {
+      url: '/signin'
       views: {
         'viewA@': {templateUrl: 'html/login_nav.html'}
         'viewB@': {templateUrl: 'html/login.html', controller: 'LoginController'}
