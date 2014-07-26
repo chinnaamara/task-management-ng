@@ -1,0 +1,35 @@
+//
+   Created by chinna on 26/7/14.
+div(class="modal")
+.col-lg-12
+    .alert.alert-success
+        i.fa.fa-check-circle-o
+        | Your Account Created Successfully!
+
+.col-lg-12
+    .col-md-4
+        .panel.panel-info
+            .panel-heading
+                h3.panel-title Create Projects
+            .panel-body
+                p You can create projects
+    .col-md-4
+        .panel.panel-info
+            .panel-heading
+                h3.panel-title Create Tasks and Issues
+            .panel-body
+                p You can create tasks and issues to a particular project
+    .col-md-4
+        .panel.panel-info
+            .panel-heading
+                h3.panel-title Manage Projects
+            .panel-body
+                p You can handle projects and its tasks and issues
+
+.col-lg-12
+    .col-md-4
+        button.btn.btn-success(ui-sref="tasks" )
+            | Continue To My Dashboard
+    .col-md-4
+        button.btn.btn-primary(ui-sref="signIn" )
+            | Start From Login

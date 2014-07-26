@@ -17,6 +17,13 @@ app.config(($stateProvider, RestangularProvider) ->
         'viewB@': {templateUrl: 'html/sign_up.html', controller: 'SignUpController'}
       }
     })
+    .state('signupSucces', {
+      url: '/joined'
+      views: {
+        'viewA@': {templateUrl: 'html/nav.html'}
+        'viewB@': {templateUrl: 'html/signup_success.html'}
+      }
+    })
     .state('signIn', {
       url: '/signin'
       views: {

@@ -36,5 +36,5 @@ app.controller 'SignUpController', ($scope, SignUpFactory, $window) ->
   $scope.signUp = ->
     $scope.$watch(SignUpFactory.signUp($scope), (res) ->
       if res
-        console.log "success..."
+        $window.location = '#/joined'
     )

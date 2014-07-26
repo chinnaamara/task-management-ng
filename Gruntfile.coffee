@@ -57,7 +57,7 @@ module.exports = (grunt) ->
               flatten: true
               src: ['bower_components/bootstrap/dist/fonts/*']
               expand: true
-              dest: 'build/fonts/fonts/'
+              dest: 'build/fonts/'
             },
             {
               flatten: true
