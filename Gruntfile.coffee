@@ -83,13 +83,11 @@ module.exports = (grunt) ->
         , 'bower_components/firebase/firebase.js'
         , 'bower_components/angular/angular.js'
         , 'bower_components/bootstrap/dist/js/bootstrap.js'
-        , 'bower_components/bootstrapValidator/dist/js/bootstrapValidator.js'
         , 'bower_components/lodash/dist/lodash.compat.js'
         , 'bower_components/angular-ui-router/release/angular-ui-router.js'
-        , 'bower_components/restangular/dist/restangular.js'
         , 'bower_components/ng-table/ng-table.js'
-        , 'bower_components/Faker/Faker.js'
         , 'bower_components/angularfire/angularfire.js'
+        , 'bower_components/firebase-simple-login/firebase-simple-login.js'
         ]
         dest: 'build/js/lib.min.js'
 

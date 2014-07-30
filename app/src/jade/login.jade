@@ -8,7 +8,7 @@ div(id='loginModal', tabindex='-1', role='dialog', aria-hidden='true')
                 h2(class='text-center') Sign In
             .modal-body
 
-                form.white-row(ng-submit="login()")
+                form.white-row(ng-submit="signIn()")
 
                     .row
                         .form-group(ng-class="{'has-error':(error),'has-success':(passwordError)}")
@@ -25,7 +25,7 @@ div(id='loginModal', tabindex='-1', role='dialog', aria-hidden='true')
                     .row
                         .form-group
                             .col-md-6
-                                input.btn.btn-primary.pull-left(type='submit', value='Sign In', data-loading-text='Loading...')
+                                input.btn.btn-primary.pull-left(type='submit', id='btn-signIn', value='Sign In')
                     | &nbsp;
                     .row
                         .alert.alert-danger(ng-show="error")

@@ -1,7 +1,7 @@
-app = angular.module('TaskManager', ['ui.router', 'restangular', 'ngTable', 'firebase'])
+app = angular.module('TaskManager', ['ui.router', 'ngTable', 'firebase'])
 app.constant('BASEURI', 'https://taskmanagement.firebaseio.com/')
-app.config(($stateProvider, RestangularProvider) ->
-  RestangularProvider.setBaseUrl 'http://localhost:3000/'
+app.config(($stateProvider) ->
+#  RestangularProvider.setBaseUrl 'http://localhost:3000/'
   $stateProvider
     .state('start', {
       url: ''

@@ -52,6 +52,6 @@ section.container
                                 textarea#description.form-control(type='text',ng-model='project.description',name='description',placeholder='Description')
 
                         div
-                            button.btn.btn-info(type='button', ng-click='createProject()', style="margin-right: 10px")
+                            button.btn.btn-info(type='button', id='btn-createProject', ng-click='createProject()', style="margin-right: 10px")
                                 | Add
-                            input.btn.btn-warning(type='reset',value='Reset')
+                            input.btn.btn-warning(type='reset', id='btn-reset', value='Reset')

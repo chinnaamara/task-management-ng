@@ -30,5 +30,5 @@ div(id='loginModal', tabindex='-1', role='dialog')
                             input#password.form-control(type='password',name='password',ng-model='password',ng-minlength="6",placeholder='Password',required)
                             small(class="label label-danger",ng-show="signUpForm.password.$invalid && signUpForm.password.$dirty") Password should contain atleast 6 characters
                     .form-group
-                        button.btn.btn-primary.form-control(style='margin-right: 10px', ng-click="signUp()", ng-disabled=" signUpForm.$invalid " )
+                        button.btn.btn-primary.form-control(id='btn-signUp', style='margin-right: 10px', ng-click="signUp()", ng-disabled=" signUpForm.$invalid " )
                             | Sign up for Task Management
